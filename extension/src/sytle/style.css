@@ -1,0 +1,47 @@
+body {
+  width: 250px;
+  height: 400px;
+  font-family: sans-serif;
+  background-color: #121212;
+}
+
+#title-header {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
+  width: 250px;
+  height: 400px;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#security-bar {
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.secure {
+  background-color: #4CAF50;
+}
+
+.default {
+  background-color: #121212;
+}
+
+.insecure {
+  background-color: #f44336;
+}
+
+#status-container-message {
+  color: black;
+  text-align: center;
+  padding: 10px;
+}

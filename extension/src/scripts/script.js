@@ -36,6 +36,9 @@ const showSuccessReponse = (data) => {
 
     const resultCode = data['code'];
 
+    // Color default
+    setSecurityBarColor("default");
+
     switch(resultCode) {
         case API_ERROR_CODE: 
             status = API_GENERIC_ERROR_MESSAGE;
@@ -53,7 +56,7 @@ const showSuccessReponse = (data) => {
             break;
     }
 
-    document.getElementById('status-container-message').textContent = status;//JSON.stringify(data);
+    document.getElementById('status-container-message').textContent = status;
 }
 
 const showErrorReponse = (error) => {
@@ -61,17 +64,21 @@ const showErrorReponse = (error) => {
 }
 
 function updateSecurityBar(isSafe) {
-    var securityBar = document.getElementById("security-bar");
-    securityBar.classList.remove("default", "secure", "insecure");
-    
     if (isSafe === undefined) {
-        
+        setSecurityBarColor("default")
     }
     else if (isSafe) {
-      securityBar.classList.add("secure");
+      setSecurityBarColor("secure");
     } else {
-      securityBar.classList.add("insecure");
+        setSecurityBarColor("insecure");
     }
+}
+
+function setSecurityBarColor(cssClass) {
+    var securityBar = document.getElementById("security-bar");
+    securityBar.classList.remove("default", "secure", "insecure");
+
+    securityBar.classList.add(cssClass);
 }
 
 checkURL()
