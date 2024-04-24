@@ -10,7 +10,7 @@ const checkURL = async () => {
 
     document.getElementById('url').textContent = tab.url;
 
-    fetch('http://127.0.0.1:5000/api/url-check', {
+    fetch('https://url-check-yp9o.onrender.com/api/url-check', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -39,21 +39,30 @@ const showSuccessReponse = (data) => {
     // Color default
     setSecurityBarColor("default");
 
+    //Danger class
+    const warningCssColor = "warning";
+
     switch(resultCode) {
-        case API_ERROR_CODE: 
+        case API_ERROR_CODE: {
             status = API_GENERIC_ERROR_MESSAGE;
+            setSecurityBarColor(warningCssColor);
             break;
-        case API_FIELD_URL_NOT_FOUND_CODE:
+        }
+        case API_FIELD_URL_NOT_FOUND_CODE: {
             status = API_GENERIC_ERROR_MESSAGE;
+            setSecurityBarColor(warningCssColor)
             break;
-        case URL_SEEM_OK_CODE:
-            status = "SEEM OK"
+        }
+        case URL_SEEM_OK_CODE: {
+            status = "URL SEEM OK"
             updateSecurityBar(true)
             break;
-        case URL_DANGER_CODE:
+        }
+        case URL_DANGER_CODE: {
             status = "DANGER"
             updateSecurityBar(false)
             break;
+        }
     }
 
     document.getElementById('status-container-message').textContent = status;
@@ -75,7 +84,7 @@ function updateSecurityBar(isSafe) {
 }
 
 function setSecurityBarColor(cssClass) {
-    var securityBar = document.getElementById("security-bar");
+    var securityBar = document.getElementById("status-container-message");
     securityBar.classList.remove("default", "secure", "insecure");
 
     securityBar.classList.add(cssClass);

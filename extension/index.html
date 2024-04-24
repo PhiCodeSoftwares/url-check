@@ -8,13 +8,20 @@
     <script src="src/scripts/script.js"></script>
 </head>
 <body>
-    <img src="src/images/banner_title.png" alt="icon" width="250" height="150">
+    <img src="src/images/banner_title.png" alt="icon" width="250" height="100">
 
     <div id="container">
         <div id="security-bar">
-            <p>URL: <span id="url"></span></p>
+            <p>Current URL: <span id="url"></span></p>
         </div>
     </div>
-    <footer id="status-container-message"></footer>
+    <div id="status-container-message"></div>
+    <footer id="responsability-container">
+        <p id="responsability-message">
+            *This extension checks if the current URL is present in our database of risky URLs. 
+            However, we cannot guarantee the accuracy or timeliness of the information. We are not responsible for any damage or loss resulting from the use of this extension. 
+            We recommend always taking precautions when browsing the internet and manually verifying the security of websites if necessary.
+        </p>
+    </footer>
 </body>
 </html>
