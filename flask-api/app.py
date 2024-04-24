@@ -7,6 +7,6 @@ app.register_blueprint(safe_browsing_bp, url_prefix='/api/url-check')
 
 CORS(app)
 
-@app.route('/')
+@app.route('/api/status')
 def index():
-    return 'Api to check if url is safe.'
+    return { 'message': 'Api ON' }, 200
