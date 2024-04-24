@@ -1,5 +1,5 @@
 from flask import Flask
-from src.safe_browsing_google.safe_browsing_google import safe_browsing_bp
+from src.safe_browsing_google_blueprint.safe_browsing_google import safe_browsing_bp
 from flask_cors import CORS
 
 app = Flask(__name__)
