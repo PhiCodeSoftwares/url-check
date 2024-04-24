@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/PhiCodeSoftwares/images-container/blob/main/banner-logo-large.png" alt="Logo">
+  <img src="https://github.com/PhiCodeSoftwares/images-container/blob/main/url-check-banner-logo-large.png" alt="Logo">
 </p>
 
 <div align="center">
