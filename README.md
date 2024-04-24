@@ -7,7 +7,7 @@ This is an open-source Chrome extension that checks if a website is secure by ve
 1. Clone this repository to your local machine.
 2. Open Google Chrome and go to `chrome://extensions/`.
 3. Enable Developer mode.
-4. Click on "Load unpacked" and select the `chrome-extension` folder from the cloned repository.
+4. Click on "Load unpacked" and select the `extension` folder from the cloned repository.
 5. The extension should now be installed and visible in your browser toolbar.
 
 ## Safe Browsing API
