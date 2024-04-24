@@ -1,3 +1,16 @@
+<p align="center">
+  <img src="https://github.com/PhiCodeSoftwares/images-container/blob/main/banner-logo-large.png" alt="Logo">
+</p>
+
+<div align="center">
+  <a href="https://github.com/mfts/papermark/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/PhiCodeSoftwares/url-check"></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5"><img src="https://img.shields.io/badge/HTML-5-orange?style=flat&logo=html5&logoColor=white" alt="HTML Badge"></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/CSS-3-blue?style=flat&logo=css3&logoColor=white" alt="CSS Badge"></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-ES6-yellow?style=flat&logo=javascript&logoColor=white" alt="JavaScript Badge"></a>
+  <a href="https://flask.palletsprojects.com/en/2.0.x/"><img src="https://img.shields.io/badge/Flask-2.0-black?style=flat&logo=flask&logoColor=white" alt="Flask Badge"></a>
+  <a href="https://github.com/mfts/papermark/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue"></a>
+</div>
+
 # URL Check Chrome Extension
 
 This is an open-source Chrome extension that checks if a website is secure by verifying its URL against a database of risky URLs. It uses HTML, CSS, and JavaScript for the extension, and Flask (Python) for the API.
