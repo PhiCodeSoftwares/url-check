@@ -1,16 +1,39 @@
-const API_GENERIC_ERROR_MESSAGE = 'Unable to check this page'
+// API
+const ROOT_ENDPOINT = 'https://url-check-yp9o.onrender.com/api/url-check'
 
+// API Properties
+const API_CODE_KEY = 'code'
+
+// API Reponse
 const API_ERROR_CODE = 0
 const API_FIELD_URL_NOT_FOUND_CODE = 1
 const URL_SEEM_OK_CODE = 2
 const URL_DANGER_CODE = 3
 
+// Colors
+const DEFAULT_COLOR_CLASS = 'default'
+const WARNING_COLOR_CLASS = 'warning'
+const SECURE_COLOR_CLASS = 'secure'
+const DANGER_COLOR_CLASS = 'danger'
+
+// Messages
+const API_GENERIC_ERROR_MESSAGE = 'Unable to check this page'
+const LOADING_MESSAGE = 'Loading ...'
+const SEEM_OK_MESSAGE = 'URL SEEM OK'
+const DANGER_MESSAGE = 'DANGER'
+
+// Elemets
+const URL_ELEMENT = 'url'
+const STATUS_CONTAINER_ELEMENT = 'status-container-message'
+
 const checkURL = async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    document.getElementById('url').textContent = tab.url;
+    document.getElementById(URL_ELEMENT).textContent = tab.url;
 
-    fetch('https://url-check-yp9o.onrender.com/api/url-check', {
+    loading(true);
+
+    fetch(ROOT_ENDPOINT, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,68 +49,80 @@ const checkURL = async () => {
     });
 }
 
+const loading = (isShow) => {
+    if (isShow) {
+        showMessage(LOADING_MESSAGE);
+        setStatusContainerColor(DEFAULT_COLOR_CLASS)
+    }
+}
+
+const showMessage = (message) => {
+    document.getElementById(STATUS_CONTAINER_ELEMENT).textContent = message;
+}
+
 const showSuccessReponse = (data) => {
     let status = ''
 
-    if(!data.hasOwnProperty("code")) {
-        document.getElementById('status-container-message').textContent = API_GENERIC_ERROR_MESSAGE;
+    if(!data.hasOwnProperty(API_CODE_KEY)) {
+        showMessage(API_GENERIC_ERROR_MESSAGE);
         return
     }
 
-    const resultCode = data['code'];
+    const resultCode = data[API_CODE_KEY];
 
     // Color default
-    setSecurityBarColor("default");
+    setStatusContainerColor(DEFAULT_COLOR_CLASS);
 
-    //Danger class
-    const warningCssColor = "warning";
+    // Danger class
+    const warningCssColor = WARNING_COLOR_CLASS;
 
     switch(resultCode) {
         case API_ERROR_CODE: {
             status = API_GENERIC_ERROR_MESSAGE;
-            setSecurityBarColor(warningCssColor);
+            setStatusContainerColor(warningCssColor);
             break;
         }
         case API_FIELD_URL_NOT_FOUND_CODE: {
             status = API_GENERIC_ERROR_MESSAGE;
-            setSecurityBarColor(warningCssColor)
+            setStatusContainerColor(warningCssColor)
             break;
         }
         case URL_SEEM_OK_CODE: {
-            status = "URL SEEM OK"
+            status = SEEM_OK_MESSAGE
             updateSecurityBar(true)
             break;
         }
         case URL_DANGER_CODE: {
-            status = "DANGER"
+            status = DANGER_MESSAGE
             updateSecurityBar(false)
             break;
         }
     }
 
-    document.getElementById('status-container-message').textContent = status;
+    showMessage(status);
 }
 
 const showErrorReponse = (error) => {
-    document.getElementById('status-container-message').textContent = API_GENERIC_ERROR_MESSAGE;
+    showMessage(API_GENERIC_ERROR_MESSAGE);
 }
 
-function updateSecurityBar(isSafe) {
+const updateSecurityBar = (isSafe) => {
     if (isSafe === undefined) {
-        setSecurityBarColor("default")
+        setStatusContainerColor(DEFAULT_COLOR_CLASS)
     }
     else if (isSafe) {
-      setSecurityBarColor("secure");
+      setStatusContainerColor(SECURE_COLOR_CLASS);
     } else {
-        setSecurityBarColor("insecure");
+        setStatusContainerColor(DANGER_COLOR_CLASS);
     }
 }
 
-function setSecurityBarColor(cssClass) {
-    var securityBar = document.getElementById("status-container-message");
-    securityBar.classList.remove("default", "secure", "insecure");
+const setStatusContainerColor = (cssClass) => {
+    var securityBar = document.getElementById(STATUS_CONTAINER_ELEMENT);
+    securityBar.classList.remove(DEFAULT_COLOR_CLASS, SECURE_COLOR_CLASS, DANGER_COLOR_CLASS, WARNING_COLOR_CLASS);
 
     securityBar.classList.add(cssClass);
 }
 
+// Main Function
 checkURL()
